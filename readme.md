@@ -1,5 +1,6 @@
 ## AppleHealthDataToJSON
 
+- *Note, this code and file structure was generated using ChatGPT. I know there are easy improvements that can be made, but the script works as is.*
 - Everybody needs mock data when developing for apple health products. Unfortunately, it's hard to come by this data. My solution? Import my own apple health data, then convert it into a usable format.
 - This is a package to take that apple healthkit XML and turn it into usable JSON. The script also allows for you to convert the data into useable javascript objects.
 - It takes about 2 minutes to set up. The script itself can vary in time, depending on the amount of data you are using.
