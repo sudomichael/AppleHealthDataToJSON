@@ -9,7 +9,7 @@ with open(output_file, 'w') as outfile:
     # Write import statements
     for file in files:
         file_name = os.path.splitext(file)[0]
-        outfile.write(f'import {file_name} from "./{file}";\n')
+        outfile.write(f'import {file_name} from "./mocks/{file}";\n')
 
     # Write default export statement with all objects
     outfile.write('\nexport default {\n')
