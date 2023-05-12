@@ -1,5 +1,6 @@
 data/
 electrocardiograms/
 workout-routes/
+safeDefaults/
 *.xml
 *.json

@@ -14,6 +14,14 @@ for record in records:
     record_type = record.get("type")
     if record_type not in grouped_data:
         grouped_data[record_type] = []
+    if record.get("sourceName"):
+        del record["sourceName"]
+    if record.get("sourceVersion"):
+        del record["sourceVersion"]
+    if record.get("device"):
+        del record["device"]
+    if record.get("MetadataEntry"):
+        del record["MetadataEntry"]
     grouped_data[record_type].append(record)
 
 # Write the grouped data to "groupedData.json" file

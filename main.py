@@ -1,5 +1,6 @@
 import sys
 import subprocess
+import argparse
 
 default_commands = [
     "python3 xml_to_json.py",
@@ -16,10 +17,25 @@ json_commands = [
     "python3 combine_exports.py"
 ]
 
-# Check if 'json' is passed as an argument
-use_json_commands = len(sys.argv) > 1 and sys.argv[1] == '--json'
+parser = argparse.ArgumentParser(description='Convert export.xml to JSON and filter by creationDate')
+parser.add_argument('--json', action='store_true', help='Use JSON commands')
+parser.add_argument('--startDate', help='Start date in the format YYYY-MM-DD')
+parser.add_argument('--endDate', help='End date in the format YYYY-MM-DD')
+args = parser.parse_args()
 
-commands = json_commands if use_json_commands else default_commands
+commands = json_commands if args.json else default_commands
+
+# Extract the startDate and endDate from the arguments, if present
+additional_args = []
+if args.startDate:
+    additional_args.append(f'--startDate={args.startDate}')
+if args.endDate:
+    additional_args.append(f'--endDate={args.endDate}')
+
+additional_args_str = ' '.join(additional_args)
+
+# Append the additional arguments to each command
+commands = [f'{command} {additional_args_str}' for command in commands]
 
 for command in commands:
     process = subprocess.Popen(command, shell=True)
